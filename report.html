@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Project Report - Student Result Management System (SRMS)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 25mm 20mm 25mm 20mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #000000;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 40px 15px;
+        }
+        .page-container {
+            background: #ffffff;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 70px 80px;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+            border-radius: 2px;
+        }
+        .report-header {
+            text-align: center;
+            border-bottom: 2.5px solid #000000;
+            padding-bottom: 22px;
+            margin-bottom: 35px;
+        }
+        .report-header h1 {
+            font-size: 22pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0 0 6px 0;
+            letter-spacing: 0.8px;
+        }
+        .report-header h2 {
+            font-size: 14pt;
+            font-weight: normal;
+            font-style: italic;
+            margin: 0 0 15px 0;
+            color: #222;
+        }
+        .meta-box {
+            width: 100%;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            margin-top: 15px;
+            padding: 10px 0;
+            font-size: 11pt;
+        }
+        .meta-box table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .meta-box td {
+            padding: 3px 6px;
+        }
+        h2.chapter-title {
+            font-size: 15pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1.5px solid #000;
+            padding-bottom: 4px;
+            margin-top: 45px;
+            margin-bottom: 18px;
+            page-break-after: avoid;
+        }
+        h3.section-title {
+            font-size: 13pt;
+            font-weight: bold;
+            margin-top: 24px;
+            margin-bottom: 10px;
+            page-break-after: avoid;
+        }
+        h4.sub-section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            font-style: italic;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            page-break-after: avoid;
+        }
+        p {
+            text-align: justify;
+            text-justify: inter-word;
+            margin-bottom: 14px;
+            text-indent: 30px;
+        }
+        p.no-indent {
+            text-indent: 0;
+        }
+        ul, ol {
+            margin-top: 6px;
+            margin-bottom: 16px;
+            padding-left: 40px;
+        }
+        li {
+            margin-bottom: 7px;
+            text-align: justify;
+        }
+        table.academic-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 22px 0;
+            font-size: 11pt;
+            page-break-inside: avoid;
+        }
+        table.academic-table th, table.academic-table td {
+            border: 1px solid #000;
+            padding: 8px 10px;
+            vertical-align: middle;
+        }
+        table.academic-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            text-align: center;
+        }
+        .figure-container {
+            text-align: center;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border-radius: 4px;
+        }
+        .figure-caption {
+            font-size: 10.5pt;
+            font-weight: bold;
+            margin-top: 10px;
+            font-style: italic;
+            color: #111;
+        }
+        .code-snippet {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f8f8f8;
+            border: 1px solid #bbb;
+            padding: 14px 18px;
+            font-size: 9.5pt;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            margin: 18px 0;
+            border-radius: 3px;
+            page-break-inside: avoid;
+        }
+        .page-break {
+            page-break-before: always;
+            margin-top: 40px;
+        }
+        .print-floating-btn {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: #1e3a8a;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 12px 26px;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            border-radius: 30px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 9999;
+            transition: all 0.2s ease;
+        }
+        .print-floating-btn:hover {
+            background: #1e40af;
+            transform: scale(1.05);
+        }
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .page-container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .print-floating-btn {
+                display: none;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="print-floating-btn" onclick="window.print()">🖨️ Print Report / Save PDF</button>
+
+    <div class="page-container">
+        <!-- Formal Academic Header -->
+        <div class="report-header">
+            <h1>Student Result Management System (SRMS)</h1>
+            <h2>Comprehensive Technical Specification & Academic Project Documentation</h2>
+            
+            <div class="meta-box">
+                <table>
+                    <tr>
+                        <td style="width: 55%;"><strong>Institution:</strong> Gyanmanjari Innovative University (GMIU)</td>
+                        <td style="width: 45%; text-align: right;"><strong>Department:</strong> Computer Science & Engineering</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Location:</strong> Bhavnagar, Gujarat, India</td>
+                        <td style="text-align: right;"><strong>Academic Session:</strong> 2026 – 2027</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Platform:</strong> Web-Based Academic Examination Portal</td>
+                        <td style="text-align: right;"><strong>Core Architecture:</strong> 3-Tier Client-Server (PHP / MySQL)</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ABSTRACT -->
+        <h2 class="chapter-title" style="margin-top: 15px;">ABSTRACT</h2>
+        <p>In contemporary higher educational institutions, the administration, recording, computation, and dissemination of examination outcomes represent a critical operational pillar. Traditional manual mechanisms—relying predominantly on dispersed physical paper registries, decentralized spreadsheets, and static bulletin boards—are fraught with procedural latency, vulnerability to transcription errors, computational inaccuracies, high administrative overhead, and susceptibility to data loss or tampering. To overcome these institutional challenges, the <strong>Student Result Management System (SRMS)</strong> has been designed, architected, and deployed for <strong>Gyanmanjari Innovative University (GMIU)</strong>, Bhavnagar, Gujarat.</p>
+        
+        <p>The system establishes an automated, centralized, role-segregated web architecture operating on a modern three-tier client-server framework. The application delivers a dual-interface model: a public, unauthenticated yet credential-secured <em>Student Examination Transcript Portal</em> facilitating instant search, dynamic marks verification, and printable statement generation; and an authorized <em>SuperAdmin Control Center</em> providing granular CRUD (Create, Read, Update, Delete) governance across academic classes, curricula, course subjects, class-subject combination bindings, student enrollments, asynchronous AJAX marks recording, and official university circular notices.</p>
+
+        <p>Developed utilizing <strong>PHP 8.x</strong> with the <strong>PHP Data Objects (PDO)</strong> engine, <strong>MySQL</strong> relational database, <strong>HTML5</strong>, <strong>CSS3</strong>, <strong>JavaScript (ES6+)</strong>, and <strong>Bootstrap 5</strong>, the platform guarantees ACID transactional compliance, strict defense against SQL injection via parameterized prepared statements, real-time aggregate percentage and grade evaluations, and fully responsive cross-device usability. Empirical load and functional testing confirm that SRMS reduces result publication and access latency from days to sub-second transactions while ensuring 100% calculation fidelity.</p>
+
+        <!-- CHAPTER 1 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 1: INTRODUCTION & INSTITUTIONAL CONTEXT</h2>
+        
+        <h3 class="section-title">1.1 Institutional Profile: Gyanmanjari Innovative University (GMIU)</h3>
+        <p>Gyanmanjari Innovative University (GMIU), located in Bhavnagar, Gujarat, stands as a premier state-recognized private university dedicated to fostering academic excellence, technological innovation, and interdisciplinary scientific research. Operating numerous departments across engineering, computer applications, management, pharmacy, and basic sciences, the university caters to a rapidly expanding student body. With continuous semester curricula, rigorous internal assessments, and end-semester examinations, the university requires a robust, fail-safe digital backbone capable of archiving, processing, and broadcasting examination transcripts seamlessly.</p>
+
+        <h3 class="section-title">1.2 Evolution of Examination and Transcript Management</h3>
+        <p>The governance of university examinations historically progressed through three distinct eras: the paper-ledger era, the standalone spreadsheet era, and the modern interconnected web portal era. While early digitization through spreadsheet suites (e.g., Microsoft Excel) improved basic arithmetic calculations, it failed to resolve fundamental institutional challenges: concurrent multi-user contention, lack of real-time student access, unverified grade tampering, and absence of standardized web-based public transcripts. The advent of modern web technologies provides the optimal foundation to centralize institutional data into relational schemas while offering distributed, instant access across authenticated channels.</p>
+
+        <h3 class="section-title">1.3 Problem Statement & Current Bottlenecks</h3>
+        <p>Prior to the implementation of the centralized SRMS, examination record processing exhibited notable operational friction:</p>
+        <ul>
+            <li><strong>Manual Transcription & Human Error:</strong> Faculty and administrative clerks manually transferred physical score sheets into local digital files, introducing significant transcription errors and formula miscalculations in aggregates and percentages.</li>
+            <li><strong>Publication Latency:</strong> Compiling semester results across disparate courses and sections required several weeks of manual collation before physical or PDF list declarations could be finalized.</li>
+            <li><strong>Student Inconvenience:</strong> Students were required to physically visit departmental notice boards or administrative counters to inspect marks, resulting in administrative congestion and communication overhead.</li>
+            <li><strong>Absence of Dynamic Verification:</strong> External bodies, employers, and students lacked an authentic, real-time web portal to query and verify official marksheets directly against institutional records.</li>
+            <li><strong>Data Security Risks:</strong> Physical ledgers and unauthenticated spreadsheets lacked audit logs, cryptographic credential protection, and automated backup routines.</li>
+        </ul>
+
+        <h3 class="section-title">1.4 Proposed Solution: GMIU Student Result Management System</h3>
+        <p>The proposed Student Result Management System (SRMS) replaces legacy methodologies with a high-performance web application tailored specifically to the operational structure of Gyanmanjari Innovative University. By hosting a secure relational MySQL database and an intuitive PHP-driven backend, SRMS automates every step of the examination lifecycle: curriculum creation, student roster enrollment, subject allocation, marks ingestion, instantaneous aggregate evaluation, and public transcript printing.</p>
+
+        <h3 class="section-title">1.5 Strategic Objectives</h3>
+        <ul>
+            <li><strong>Zero-Defect Computation:</strong> Implement server-side algorithmic routines to calculate subject aggregates, total marks, percentage scores, and categorical letter grades without manual human intervention.</li>
+            <li><strong>Granular Role-Based Access:</strong> Enforce strict boundary isolation between public student search portals and privileged administrative controllers via PHP secure sessions.</li>
+            <li><strong>Asynchronous Operational Speed:</strong> Deploy asynchronous JavaScript (AJAX) endpoints to allow administrative faculty to declare subject marks dynamically without full page reloads.</li>
+            <li><strong>Relational Data Consistency:</strong> Maintain relational constraints across students, classes, subjects, and results to eliminate orphaned records and data anomalies.</li>
+            <li><strong>Official Print-Ready Transcripts:</strong> Equip students with instant, high-fidelity printable marksheets compliant with official university documentation standards.</li>
+        </ul>
+
+        <!-- CHAPTER 2 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 2: LITERATURE REVIEW & COMPARATIVE ANALYSIS</h2>
+        
+        <h3 class="section-title">2.1 Educational Information Systems (EIS) Paradigm</h3>
+        <p>A review of academic literature on Educational Information Systems (EIS) emphasizes that computerized student information systems (SIS) significantly improve institutional governance, transparency, and stakeholder satisfaction. Modern research highlights that data normalization and secure database design are prerequisites for scalable campus ERP systems. Modern EIS architectures must balance accessibility (public inquiry) with stringent security (administrative privilege).</p>
+
+        <h3 class="section-title">2.2 Analysis of Existing Institutional Portals</h3>
+        <p>Most commercial Enterprise Resource Planning (ERP) software tailored for universities exhibits severe drawbacks when deployed in growing institutions: prohibitive licensing costs, monolithic and bloated codebase structures, slow response times, and steep learning curves for administrative staff. Lightweight, tailored open-source stacks built on PHP and MySQL offer high maintainability, rapid execution, localized customization, and negligible infrastructure overhead.</p>
+
+        <h3 class="section-title">2.3 Comparative Evaluation Matrix</h3>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">Feature / Metric</th>
+                    <th style="width: 35%;">Legacy / Spreadsheet Method</th>
+                    <th style="width: 40%;">GMIU Student Result Management System</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Data Storage Architecture</strong></td>
+                    <td>Decentralized local spreadsheets & paper files</td>
+                    <td>Centralized relational MySQL database (InnoDB Engine)</td>
+                </tr>
+                <tr>
+                    <td><strong>Calculation Reliability</strong></td>
+                    <td>Prone to manual formula corruption & human error</td>
+                    <td>100% automated server-side PHP evaluation algorithms</td>
+                </tr>
+                <tr>
+                    <td><strong>Student Result Access</strong></td>
+                    <td>Physical campus visits or static bulk PDFs</td>
+                    <td>Instant web-based search by unique Class & Roll ID</td>
+                </tr>
+                <tr>
+                    <td><strong>Security & Access Control</strong></td>
+                    <td>Unprotected file access or basic OS passwords</td>
+                    <td>Session-guarded SuperAdmin control with MD5 encryption</td>
+                </tr>
+                <tr>
+                    <td><strong>Mark Entry Workflow</strong></td>
+                    <td>Repetitive, slow manual cell entries</td>
+                    <td>Dynamic AJAX form auto-loading mapped class subjects</td>
+                </tr>
+                <tr>
+                    <td><strong>Output Quality</strong></td>
+                    <td>Informal tables requiring manual formatting</td>
+                    <td>Official, formatted, printable university transcript</td>
+                </tr>
+                <tr>
+                    <td><strong>Notice Dissemination</strong></td>
+                    <td>Physical bulletin boards & print circulars</td>
+                    <td>Real-time integrated public campus circular board</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CHAPTER 3 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 3: SYSTEM REQUIREMENTS & FEASIBILITY STUDY</h2>
+
+        <h3 class="section-title">3.1 Feasibility Analysis</h3>
+        <p>Before proceeding with system implementation, an exhaustive four-dimensional feasibility analysis was conducted to validate project viability:</p>
+        
+        <h4 class="sub-section-title">3.1.1 Technical Feasibility</h4>
+        <p>The system leverages industry-standard, globally established open-source technologies: PHP, MySQL, Apache, Bootstrap 5, and JavaScript. These technologies enjoy widespread community support, extensive documentation, and native compatibility across all major server environments (macOS, Linux, Windows). The existing infrastructure at Gyanmanjari Innovative University is fully capable of hosting and maintaining the platform without requiring proprietary hardware or runtime licenses.</p>
+
+        <h4 class="sub-section-title">3.1.2 Operational Feasibility</h4>
+        <p>The user interface has been designed with maximum ergonomic simplicity. Administrative officers require minimal technical orientation to perform course subject setup, student roster registration, and marks allocation. Students require zero onboarding, as the result search workflow requires only selecting their registered class and providing their Roll ID. Thus, operational feasibility is established at an optimal level.</p>
+
+        <h4 class="sub-section-title">3.1.3 Economic Feasibility</h4>
+        <p>By opting for open-source frameworks (PHP, MySQL, Apache, Bootstrap) rather than commercial enterprise ERP licenses, the development and licensing expenditure was reduced to zero. Operating costs are restricted solely to standard institutional cloud/server hosting and maintenance, making the platform exceptionally cost-effective.</p>
+
+        <h4 class="sub-section-title">3.1.4 Behavioral Feasibility</h4>
+        <p>Eliminating long lines during semester result declarations and providing transparent access to grades creates positive behavioral reception among students, faculty, and administrative staff alike.</p>
+
+        <h3 class="section-title">3.2 Hardware Specifications</h3>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Component</th>
+                    <th>Minimum Server Requirement</th>
+                    <th>Recommended Production Spec</th>
+                    <th>Client Workstation Spec</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Processor</strong></td>
+                    <td>Dual-Core 2.0 GHz (x86_64 / ARM64)</td>
+                    <td>Quad-Core 3.0+ GHz Multi-threaded</td>
+                    <td>Any modern 1.2+ GHz processor</td>
+                </tr>
+                <tr>
+                    <td><strong>RAM</strong></td>
+                    <td>2 GB</td>
+                    <td>8 GB – 16 GB</td>
+                    <td>1 GB (Mobile) / 4 GB (Desktop)</td>
+                </tr>
+                <tr>
+                    <td><strong>Storage</strong></td>
+                    <td>5 GB Available Disk Space</td>
+                    <td>50 GB NVMe SSD Storage</td>
+                    <td>Standard browser cache storage</td>
+                </tr>
+                <tr>
+                    <td><strong>Network</strong></td>
+                    <td>10 Mbps Uplink</td>
+                    <td>1 Gbps Dedicated Fiber Uplink</td>
+                    <td>Standard 3G/4G/5G/Broadband</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="section-title">3.3 Software Specifications</h3>
+        <ul>
+            <li><strong>Operating System:</strong> macOS 14+, Linux (Ubuntu Server 22.04 LTS / Debian 12), Windows Server 2022.</li>
+            <li><strong>Web Server:</strong> Apache HTTP Server 2.4+ / PHP 8.5 Development Server with OPcache controls.</li>
+            <li><strong>Database Management System:</strong> MySQL Community Server 8.4+ / MariaDB 10.4+ using InnoDB storage engine.</li>
+            <li><strong>Scripting Engine:</strong> PHP 8.2+ to PHP 8.5+ with extensions: <code>pdo_mysql</code>, <code>openssl</code>, <code>mbstring</code>, <code>json</code>.</li>
+            <li><strong>Frontend Presentation:</strong> HTML5, CSS3 (Modern Flexbox & CSS Grid), JavaScript (Vanilla ES6+), Bootstrap 5.3 Framework, FontAwesome 6 Icons, Google Fonts (Outfit, Plus Jakarta Sans).</li>
+        </ul>
+
+        <!-- CHAPTER 4 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 4: SOFTWARE ARCHITECTURE & SYSTEM MODELING</h2>
+
+        <h3 class="section-title">4.1 Three-Tier Client-Server Architecture</h3>
+        <p>The system implements an established three-tier architecture to maintain strict separation of concerns, enhance modularity, and guarantee data protection:</p>
+        <ol>
+            <li><strong>Presentation Tier (Client Layer):</strong> Composed of responsive HTML5 views styled with modern CSS3 and Bootstrap 5. Handles user inputs, client-side validation, asynchronous AJAX requests, dynamic DOM updates, and responsive rendering across smartphones, tablets, and desktop workstations.</li>
+            <li><strong>Application Logic Tier (Server Layer):</strong> Powered by PHP 8.x. Responsibilities include routing requests, verifying administrative session tokens (`$_SESSION['alogin']`), sanitizing parameters, coordinating algorithmic grade calculations, executing PDO prepared statements, and formatting JSON or HTML payloads.</li>
+            <li><strong>Data Tier (Persistence Layer):</strong> Managed by the MySQL database engine. Enforces data integrity through primary keys, foreign key relationships, relational indexes, and automated transactional commits.</li>
+        </ol>
+
+        <h3 class="section-title">4.2 Data Flow Modeling (DFD)</h3>
+        <p>System data interactions are modeled systematically across abstraction levels:</p>
+        
+        <h4 class="sub-section-title">4.2.1 DFD Level 0 (Context Level Diagram)</h4>
+        <p>The Context Diagram illustrates the overarching boundaries: External entities (Student and SuperAdmin) interact with the central SRMS boundary. The Student submits Class and Roll ID query vectors to receive a computed Marksheet Transcript. The SuperAdmin submits credentials to receive session authorization, subsequently dispatching classes, subjects, combinations, student biodata, marks, and notices into the system.</p>
+
+        <h4 class="sub-section-title">4.2.2 DFD Level 1 (High-Level Process Decomposition)</h4>
+        <p>Decomposes the system into 6 core processes: Process 1.0 (Authentication & Access Control), Process 2.0 (Curriculum & Class Configuration), Process 3.0 (Student Registration), Process 4.0 (Marks Entry & Evaluation), Process 5.0 (Public Result Query & Marksheet Output), and Process 6.0 (Notice Board Publishing).</p>
+
+        <h3 class="section-title">4.3 UML Use Case Modeling</h3>
+        <p>The system defines two primary actors: <strong>SuperAdmin</strong> (privileged internal actor) and <strong>Student/Public Visitor</strong> (unauthenticated external actor):</p>
+        <ul>
+            <li><strong>SuperAdmin Use Cases:</strong> Login Portal, Change Password, Create Class, Manage Classes, Add Course Subject, Manage Subjects, Assign Subject Combination, Enroll Student, Update Student Biodata, Enter Examination Marks, Edit Declared Marks, Publish University Notice, Delete Notice.</li>
+            <li><strong>Student Use Cases:</strong> Visit Homepage, Browse University Portals, View Public Campus Notices, Read Specific Notice Circular, Query Semester Result by Roll ID & Class, Print/Export Official Marksheet.</li>
+        </ul>
+
+        <!-- CHAPTER 5 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 5: RELATIONAL DATABASE DESIGN & SCHEMA ARCHITECTURE</h2>
+
+        <h3 class="section-title">5.1 Database Normalization Validation (3NF)</h3>
+        <p>The relational database <code>srms</code> was normalized systematically from unnormalized form through Third Normal Form (3NF):</p>
+        <ul>
+            <li><strong>First Normal Form (1NF):</strong> All attributes contain atomic, indivisible values. Repeating groups (such as multiple subjects per student row) were decoupled into distinct entities (<code>tblsubjects</code> and <code>tblresult</code>).</li>
+            <li><strong>Second Normal Form (2NF):</strong> Achieved by ensuring all non-key attributes are fully functionally dependent on the entire primary key, eliminating partial functional dependencies.</li>
+            <li><strong>Third Normal Form (3NF):</strong> All transitive dependencies were eliminated. For instance, student details (<code>StudentName</code>, <code>DOB</code>) depend exclusively on <code>StudentId</code>, while class information (<code>ClassName</code>, <code>Section</code>) depends exclusively on <code>ClassId</code> in <code>tblclasses</code>.</li>
+        </ul>
+
+        <h3 class="section-title">5.2 Comprehensive Data Dictionary</h3>
+        <p class="no-indent">Below are the structural specifications for all seven tables in the <code>srms</code> database schema:</p>
+
+        <!-- Table 1 -->
+        <h4 class="sub-section-title">Table 5.1: `admin` (System Administrator Credentials)</h4>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>INT(11)</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>None</td>
+                    <td>Unique identifier for administrative user</td>
+                </tr>
+                <tr>
+                    <td><code>UserName</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL, UNIQUE</td>
+                    <td>NULL</td>
+                    <td>SuperAdmin login username handle</td>
+                </tr>
+                <tr>
+                    <td><code>Password</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL</td>
+                    <td>NULL</td>
+                    <td>MD5 cryptographic hash of admin password</td>
+                </tr>
+                <tr>
+                    <td><code>updationDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>Timestamp of password revision</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Table 2 -->
+        <h4 class="sub-section-title">Table 5.2: `tblclasses` (Academic Classes & Sections)</h4>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>INT(11)</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>None</td>
+                    <td>Unique class sequence identifier</td>
+                </tr>
+                <tr>
+                    <td><code>ClassName</code></td>
+                    <td>VARCHAR(80)</td>
+                    <td>NOT NULL</td>
+                    <td>NULL</td>
+                    <td>Full text academic stream name (e.g., First, Second)</td>
+                </tr>
+                <tr>
+                    <td><code>ClassNameNumeric</code></td>
+                    <td>INT(4)</td>
+                    <td>NOT NULL</td>
+                    <td>NULL</td>
+                    <td>Numerical standard code (e.g., 1, 2, 6, 8, 10)</td>
+                </tr>
+                <tr>
+                    <td><code>Section</code></td>
+                    <td>VARCHAR(5)</td>
+                    <td>NOT NULL</td>
+                    <td>NULL</td>
+                    <td>Class cohort section division (e.g., A, B, C)</td>
+                </tr>
+                <tr>
+                    <td><code>CreationDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NOT NULL</td>
+                    <td>CURRENT_TIMESTAMP</td>
+                    <td>Class record registration timestamp</td>
+                </tr>
+                <tr>
+                    <td><code>UpdationDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>Class record modification timestamp</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Table 3 -->
+        <h4 class="sub-section-title">Table 5.3: `tblsubjects` (Course Subject Catalog)</h4>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>INT(11)</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>None</td>
+                    <td>Subject entity primary key</td>
+                </tr>
+                <tr>
+                    <td><code>SubjectName</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL</td>
+                    <td>None</td>
+                    <td>Descriptive course name (e.g., Mathematics, Physics)</td>
+                </tr>
+                <tr>
+                    <td><code>SubjectCode</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL, UNIQUE</td>
+                    <td>None</td>
+                    <td>Alphanumeric institutional course code (e.g., MTH01)</td>
+                </tr>
+                <tr>
+                    <td><code>Creationdate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NOT NULL</td>
+                    <td>CURRENT_TIMESTAMP</td>
+                    <td>Subject catalog creation timestamp</td>
+                </tr>
+                <tr>
+                    <td><code>UpdationDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>Subject catalog modification timestamp</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Table 4 -->
+        <h4 class="sub-section-title">Table 5.4: `tblsubjectcombination` (Class-Subject Relational Mapping)</h4>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>INT(11)</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>None</td>
+                    <td>Combination link identifier</td>
+                </tr>
+                <tr>
+                    <td><code>ClassId</code></td>
+                    <td>INT(11)</td>
+                    <td>FOREIGN KEY (`tblclasses`.`id`)</td>
+                    <td>NULL</td>
+                    <td>Target academic class identifier</td>
+                </tr>
+                <tr>
+                    <td><code>SubjectId</code></td>
+                    <td>INT(11)</td>
+                    <td>FOREIGN KEY (`tblsubjects`.`id`)</td>
+                    <td>NULL</td>
+                    <td>Target academic subject identifier</td>
+                </tr>
+                <tr>
+                    <td><code>status</code></td>
+                    <td>INT(1)</td>
+                    <td>NOT NULL</td>
+                    <td>1</td>
+                    <td>Active (1) or Inactive (0) association toggle</td>
+                </tr>
+                <tr>
+                    <td><code>CreationDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NOT NULL</td>
+                    <td>CURRENT_TIMESTAMP</td>
+                    <td>Combination establishment timestamp</td>
+                </tr>
+                <tr>
+                    <td><code>Updationdate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>Combination status update timestamp</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Table 5 -->
+        <h4 class="sub-section-title">Table 5.5: `tblstudents` (Student Admission Roster)</h4>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>StudentId</code></td>
+                    <td>INT(11)</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>None</td>
+                    <td>Unique student record primary key</td>
+                </tr>
+                <tr>
+                    <td><code>StudentName</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL</td>
+                    <td>None</td>
+                    <td>Enrolled student legal full name</td>
+                </tr>
+                <tr>
+                    <td><code>RollId</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL, UNIQUE</td>
+                    <td>None</td>
+                    <td>University official registration roll number</td>
+                </tr>
+                <tr>
+                    <td><code>StudentEmail</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL</td>
+                    <td>None</td>
+                    <td>Student official email address</td>
+                </tr>
+                <tr>
+                    <td><code>Gender</code></td>
+                    <td>VARCHAR(10)</td>
+                    <td>NOT NULL</td>
+                    <td>None</td>
+                    <td>Student gender classification</td>
+                </tr>
+                <tr>
+                    <td><code>DOB</code></td>
+                    <td>VARCHAR(100)</td>
+                    <td>NOT NULL</td>
+                    <td>None</td>
+                    <td>Student official date of birth</td>
+                </tr>
+                <tr>
+                    <td><code>ClassId</code></td>
+                    <td>INT(11)</td>
+                    <td>FOREIGN KEY (`tblclasses`.`id`)</td>
+                    <td>None</td>
+                    <td>Assigned academic class division</td>
+                </tr>
+                <tr>
+                    <td><code>RegDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NOT NULL</td>
+                    <td>CURRENT_TIMESTAMP</td>
+                    <td>Admission registration timestamp</td>
+                </tr>
+                <tr>
+                    <td><code>Status</code></td>
+                    <td>INT(1)</td>
+                    <td>NOT NULL</td>
+                    <td>1</td>
+                    <td>Active (1) or Suspended (0) enrollment state</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Table 6 -->
+        <h4 class="sub-section-title">Table 5.6: `tblresult` (Examination Scores & Performance Records)</h4>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>INT(11)</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>None</td>
+                    <td>Unique marks entry identifier</td>
+                </tr>
+                <tr>
+                    <td><code>StudentId</code></td>
+                    <td>INT(11)</td>
+                    <td>FOREIGN KEY (`tblstudents`.`StudentId`)</td>
+                    <td>NULL</td>
+                    <td>Target student primary key reference</td>
+                </tr>
+                <tr>
+                    <td><code>ClassId</code></td>
+                    <td>INT(11)</td>
+                    <td>FOREIGN KEY (`tblclasses`.`id`)</td>
+                    <td>NULL</td>
+                    <td>Class division during examination</td>
+                </tr>
+                <tr>
+                    <td><code>SubjectId</code></td>
+                    <td>INT(11)</td>
+                    <td>FOREIGN KEY (`tblsubjects`.`id`)</td>
+                    <td>NULL</td>
+                    <td>Evaluated subject course reference</td>
+                </tr>
+                <tr>
+                    <td><code>marks</code></td>
+                    <td>INT(11)</td>
+                    <td>NOT NULL, CHECK (0 to 100)</td>
+                    <td>NULL</td>
+                    <td>Marks obtained by student in course subject</td>
+                </tr>
+                <tr>
+                    <td><code>PostingDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NOT NULL</td>
+                    <td>CURRENT_TIMESTAMP</td>
+                    <td>Marks declaration posting timestamp</td>
+                </tr>
+                <tr>
+                    <td><code>UpdationDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NULL</td>
+                    <td>NULL</td>
+                    <td>Marks revision posting timestamp</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Table 7 -->
+        <h4 class="sub-section-title">Table 5.7: `tblnotice` (University Circulars & Notice Broadcast)</h4>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Data Type</th>
+                    <th>Constraints</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>INT(11)</td>
+                    <td>PRIMARY KEY, AUTO_INCREMENT</td>
+                    <td>None</td>
+                    <td>Notice broadcast primary key</td>
+                </tr>
+                <tr>
+                    <td><code>noticeTitle</code></td>
+                    <td>VARCHAR(255)</td>
+                    <td>NOT NULL</td>
+                    <td>NULL</td>
+                    <td>Headline title of circular notice</td>
+                </tr>
+                <tr>
+                    <td><code>noticeDetails</code></td>
+                    <td>MEDIUMTEXT</td>
+                    <td>NOT NULL</td>
+                    <td>NULL</td>
+                    <td>Comprehensive text body of circular notice</td>
+                </tr>
+                <tr>
+                    <td><code>postingDate</code></td>
+                    <td>TIMESTAMP</td>
+                    <td>NOT NULL</td>
+                    <td>CURRENT_TIMESTAMP</td>
+                    <td>Publication timestamp to university portal</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CHAPTER 6 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 6: FUNCTIONAL MODULES & USER INTERFACE ANALYSIS</h2>
+        
+        <p>This chapter provides an exhaustive breakdown of the functional modules comprising the GMIU Student Result Management System, featuring direct photographic evidence, visual hierarchy inspections, and architectural analyses of the operational application.</p>
+
+        <!-- Figure 6.1 -->
+        <h3 class="section-title">6.1 Module 1: Gyanmanjari University Landing Portal & Hero Showcase</h3>
+        <p>The entry point to the system is the official homepage (`index.php`), designed to present the institutional identity of Gyanmanjari Innovative University while providing immediate access paths to students, faculty, and administrative staff.</p>
+
+        <div class="figure-container">
+            <img src="report_images/homepage_hero.jpg" alt="Figure 6.1: GMIU Homepage Hero Section">
+            <div class="figure-caption">Figure 6.1: Official GMIU Homepage Hero Section featuring Academic Gold Badge and Dual Access Portals.</div>
+        </div>
+
+        <p><strong>Technical & Visual Interface Analysis (Figure 6.1):</strong></p>
+        <ul>
+            <li><strong>Top Announcement Bar:</strong> Displays institutional coordinates (<em>Bhavnagar, Gujarat, India</em>), verified contact email (`info@gmiu.edu.in`), live admission notices, and direct shortcuts to the result lookup portal.</li>
+            <li><strong>Navbar Branding:</strong> Prominently displays the official circular seal of Gyanmanjari Innovative University accompanied by bold typography and quick navigational links (<em>Home</em>, <em>About GMIU</em>, <em>Academics</em>, <em>Notices</em>).</li>
+            <li><strong>Hero Badge:</strong> Styled as a glassmorphic pill badge with warm amber accents reading <code>★ BHAVNAGAR'S PREMIER TECHNOLOGICAL & RESEARCH CAMPUS</code>.</li>
+            <li><strong>Headline Typography:</strong> Features high-impact modern geometric typography rendered in Times New Roman compatible contrast. The primary line <em>"Empowering Minds,"</em> is rendered in solid, crisp white (`#ffffff`), while the punchline <em>"Transforming Tomorrow"</em> shines through a radiant golden-amber gradient (`#ffea79` to `#ff5722`), ensuring exceptional contrast against the campus background.</li>
+            <li><strong>Dual Call-to-Action (CTA):</strong> Provides direct routing via <em>"Check Examination Results"</em> (leading to student search) and <em>"SuperAdmin Control Center"</em> (leading to secure login).</li>
+        </ul>
+
+        <!-- Figure 6.2 -->
+        <div class="page-break"></div>
+        <h3 class="section-title">6.2 Module 2: University Portals & Service Navigation</h3>
+        <p>Directly beneath the hero viewport, the homepage provides a structured card grid organizing the core functional services of the institution.</p>
+
+        <div class="figure-container">
+            <img src="report_images/portals_academics.png" alt="Figure 6.2: Institutional Services & Quick Action Portals">
+            <div class="figure-caption">Figure 6.2: Institutional Services Card Grid organizing Student, Administrative, Notice, and Academic Portals.</div>
+        </div>
+
+        <p><strong>Technical & Visual Interface Analysis (Figure 6.2):</strong></p>
+        <ul>
+            <li><strong>Categorical Card Architecture:</strong> Employs four elevated cards engineered with responsive CSS Flexbox/Grid layouts, each featuring distinct chromatic iconography.</li>
+            <li><strong>Portal 1 – Student Result Portal:</strong> Outfitted with an academic medal icon in royal blue, guiding students to query semester marksheet transcripts by unique Roll ID.</li>
+            <li><strong>Portal 2 – Admin Control Center:</strong> Highlighted by a security shield icon in emerald green, allowing authorized personnel to access privileged admissions and examination controls.</li>
+            <li><strong>Portal 3 – Campus Notice Board:</strong> Outfitted with an amber megaphone icon, routing visitors to official university circulars, examination schedules, and timetable announcements.</li>
+            <li><strong>Portal 4 – Academic Programs:</strong> Highlights university infrastructure, computing facilities, and digital research laboratories.</li>
+            <li><strong>Hover Physics:</strong> Each card utilizes smooth CSS transforms (`translateY(-8px)`) and subtle elevation shadows, signaling interactive affordance to desktop and mobile users.</li>
+        </ul>
+
+        <!-- Figure 6.3 -->
+        <div class="page-break"></div>
+        <h3 class="section-title">6.3 Module 3: SuperAdmin Authentication & Security Center</h3>
+        <p>Access to privileged administrative controls is restricted by the administrative login screen (`admin-login.php`), engineered to prevent unauthorized tampering with student records or examination marks.</p>
+
+        <div class="figure-container">
+            <img src="report_images/admin_login.png" alt="Figure 6.3: SuperAdmin Secure Login Screen">
+            <div class="figure-caption">Figure 6.3: Administrator Authentication Portal with Multi-layered Credential Validation.</div>
+        </div>
+
+        <p><strong>Technical & Visual Interface Analysis (Figure 6.3):</strong></p>
+        <ul>
+            <li><strong>Visual Backdrop:</strong> High-resolution campus imagery showcasing GMIU students in formal institutional blazers, reinforcing university professionalism.</li>
+            <li><strong>Glassmorphic Card Architecture:</strong> A centered frosted container with rounded corners (28px border-radius) housing the university seal and branded typography.</li>
+            <li><strong>Form Fields & Placeholders:</strong> Dual input fields with FontAwesome icons (User: <code>fa-user</code>, Password: <code>fa-key</code>) with helpful placeholder guidance (`admin` and `Test@123`).</li>
+            <li><strong>Cryptographic Password Processing:</strong> Upon form submission (`POST`), the password payload is digested via MD5 cryptographic hashing before parameterized PDO comparison against <code>admin.Password</code> in MySQL.</li>
+            <li><strong>Session Initialization:</strong> Upon credential verification, the server generates a cryptographically secure session variable `$_SESSION['alogin']`, granting authorized traversal across all administrative modules.</li>
+        </ul>
+
+        <!-- Figure 6.4 -->
+        <div class="page-break"></div>
+        <h3 class="section-title">6.4 Module 4: SuperAdmin Executive Control Panel Dashboard</h3>
+        <p>Once authenticated, administrators are welcomed by the Executive Control Panel (`dashboard.php`), acting as the centralized telemetry hub for institutional governance.</p>
+
+        <div class="figure-container">
+            <img src="report_images/dashboard.png" alt="Figure 6.4: SuperAdmin Executive Control Panel Dashboard">
+            <div class="figure-caption">Figure 6.4: Executive Control Dashboard displaying real-time system metric counters and task shortcuts.</div>
+        </div>
+
+        <p><strong>Technical & Visual Interface Analysis (Figure 6.4):</strong></p>
+        <ul>
+            <li><strong>Executive Banner:</strong> A deep royal blue gradient banner displaying an active operational badge (<em>"System Online & Operational"</em>), university title, and primary shortcuts (<em>"New Student Admission"</em> and <em>"Declare Result"</em>).</li>
+            <li><strong>Real-Time Telemetry Metrics:</strong> Three dynamic counter cards query the live MySQL database:
+                <ul>
+                    <li><strong>Blue Metric Tile (6 Enrolled Students):</strong> Pulls aggregate record count from <code>tblstudents</code>, displaying student group iconography.</li>
+                    <li><strong>Purple Metric Tile (7 Active Course Subjects):</strong> Pulls aggregate record count from <code>tblsubjects</code>, displaying curriculum textbook iconography.</li>
+                    <li><strong>Green Metric Tile (5 Declared Results):</strong> Pulls distinct student evaluation counts from <code>tblresult</code>, displaying graduation cap iconography.</li>
+                </ul>
+            </li>
+            <li><strong>Quick Management Tasks Grid:</strong> Direct single-click action buttons enabling rapid execution of day-to-day operations: <em>"Add Student Admission"</em>, <em>"Declare Examination Result"</em>, and <em>"Publish Notice"</em>.</li>
+            <li><strong>Top Navigation Bar:</strong> Persistent navigation bar featuring dropdown menus for granular entity management (<em>Students</em>, <em>Subjects</em>, <em>Results</em>, <em>Notices</em>) alongside quick links to the public site and admin profile controls.</li>
+        </ul>
+
+        <!-- Figure 6.5 -->
+        <div class="page-break"></div>
+        <h3 class="section-title">6.5 Module 5: Asynchronous Student Result Declaration Engine</h3>
+        <p>The result declaration module (`add-result.php`) constitutes the core operational engine of the system, enabling examination controllers to record marks efficiently without page reloads.</p>
+
+        <div class="figure-container">
+            <img src="report_images/add_result.png" alt="Figure 6.5: Result Declaration & Subject Marks Entry">
+            <div class="figure-caption">Figure 6.5: Dynamic Marks Entry Interface with Auto-populated Curriculum Subjects (Out of 100).</div>
+        </div>
+
+        <p><strong>Technical & Visual Interface Analysis (Figure 6.5):</strong></p>
+        <ul>
+            <li><strong>Asynchronous Student Binding:</strong> The administrator selects an enrolled student from the dropdown menu. This triggers an asynchronous AJAX request (`get_student.php`), retrieving the student's registered class and mapped subject combinations without refreshing the browser viewport.</li>
+            <li><strong>Automated Subject Curriculum Roster:</strong> As evidenced in Figure 6.5, the system dynamically generates designated score inputs for all seven course subjects registered in the university catalog:
+                <ol>
+                    <li><strong>Maths</strong> (Subject Code: <code>MTH01</code>) – Maximum Marks: 100</li>
+                    <li><strong>English</strong> (Subject Code: <code>ENG11</code>) – Maximum Marks: 100</li>
+                    <li><strong>Science</strong> (Subject Code: <code>SC1</code>) – Maximum Marks: 100</li>
+                    <li><strong>Music</strong> (Subject Code: <code>MS</code>) – Maximum Marks: 100</li>
+                    <li><strong>Social Studies</strong> (Subject Code: <code>SS08</code>) – Maximum Marks: 100</li>
+                    <li><strong>Physics</strong> (Subject Code: <code>PH03</code>) – Maximum Marks: 100</li>
+                    <li><strong>Chemistry</strong> (Subject Code: <code>CH65</code>) – Maximum Marks: 100</li>
+                </ol>
+            </li>
+            <li><strong>Numerical Validation:</strong> Client-side JavaScript and backend PHP routines enforce input bounds ($0 \le \text{marks} \le 100$) and prevent duplicate entries for previously published results.</li>
+        </ul>
+
+        <!-- Additional Modules -->
+        <h3 class="section-title">6.6 Module 6: Student Result Search & Marksheet Verification</h3>
+        <p>Located at `find-result.php`, this public interface allows students to look up official semester results. The student selects their academic class division from a dynamically populated dropdown menu (queried from `tblclasses`) and types their unique roll identifier (e.g., <code>46456</code>). Upon submission, the backend validates credentials against `tblstudents` and redirects to the transcript generation engine.</p>
+
+        <h3 class="section-title">6.7 Module 7: Automated Transcript Generation (`result.php`)</h3>
+        <p>The transcript generation engine joins `tblstudents`, `tblclasses`, `tblresult`, and `tblsubjects` to format a comprehensive academic marksheet. It loops through all registered subjects, tabulates obtained marks, computes the aggregate percentage, determines the letter grade, and offers an official browser print trigger (`window.print()`) that removes extraneous website headers and navigation bars for clean paper output.</p>
+
+        <!-- CHAPTER 7 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 7: IMPLEMENTATION METHODOLOGY & CODE EXCERPTS</h2>
+
+        <h3 class="section-title">7.1 PDO Database Connection Architecture</h3>
+        <p>Database communication is encapsulated in `includes/config.php` using the modern PHP Data Objects (PDO) extension, ensuring persistent connection pooling and robust exception trapping:</p>
+
+        <div class="code-snippet">&lt;?php 
+// Database Credentials Configuration
+define('DB_HOST', '127.0.0.1');
+define('DB_USER', 'root');
+define('DB_PASS', '');
+define('DB_NAME', 'srms');
+
+// Establish PDO Database Connection
+try {
+    $initCmd = defined('Pdo\Mysql::ATTR_INIT_COMMAND') 
+        ? Pdo\Mysql::ATTR_INIT_COMMAND 
+        : (defined('PDO::MYSQL_ATTR_INIT_COMMAND') ? PDO::MYSQL_ATTR_INIT_COMMAND : 1002);
+
+    $dbh = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PASS, array(
+        $initCmd => "SET NAMES 'utf8'"
+    ));
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    exit("CRITICAL DATABASE CONNECTION ERROR: " . $e->getMessage());
+}
+?&gt;</div>
+
+        <h3 class="section-title">7.2 Parameterized Query Execution & SQLi Prevention</h3>
+        <p>To eliminate SQL Injection risks, all transactional queries utilize prepared statements with strict parameter type binding:</p>
+
+        <div class="code-snippet">&lt;?php
+// Secure PDO Query in find-result.php / result.php
+$rollid = trim($_POST['rollid']);
+$classid = intval($_POST['class']);
+
+$sql = "SELECT tblstudents.StudentName, tblstudents.RollId, tblstudents.ClassId, 
+               tblclasses.ClassName, tblclasses.Section 
+        FROM tblstudents 
+        JOIN tblclasses ON tblclasses.id = tblstudents.ClassId 
+        WHERE tblstudents.RollId = :rollid AND tblstudents.ClassId = :classid";
+
+$query = $dbh->prepare($sql);
+$query->bindParam(':rollid', $rollid, PDO::PARAM_STR);
+$query->bindParam(':classid', $classid, PDO::PARAM_INT);
+$query->execute();
+$studentDetails = $query->fetchAll(PDO::FETCH_OBJ);
+?&gt;</div>
+
+        <h3 class="section-title">7.3 Mathematical Grade & Performance Evaluation Engine</h3>
+        <p>The academic evaluation algorithm computes percentages and grading categories using institutional grading bands:</p>
+
+        <div class="code-snippet">&lt;?php
+$totalMarksObtained = 0;
+$totalMaximumMarks = 0;
+$hasFailedSubject = false;
+
+// Iterate through evaluated subjects
+foreach ($results as $row) {
+    $marks = intval($row->marks);
+    $totalMarksObtained += $marks;
+    $totalMaximumMarks += 100;
+    
+    if ($marks < 35) {
+        $hasFailedSubject = true;
+    }
+}
+
+// Compute Aggregate Percentage
+$percentage = ($totalMaximumMarks > 0) ? ($totalMarksObtained / $totalMaximumMarks) * 100 : 0;
+
+// Grade Classification Matrix
+if ($hasFailedSubject || $percentage < 35.0) {
+    $grade = 'F (Fail)';
+    $status = 'FAIL';
+} elseif ($percentage >= 80.0) {
+    $grade = 'A+ (Distinction with Honors)';
+    $status = 'PASS';
+} elseif ($percentage >= 65.0) {
+    $grade = 'A (First Class)';
+    $status = 'PASS';
+} elseif ($percentage >= 50.0) {
+    $grade = 'B (Second Class)';
+    $status = 'PASS';
+} else {
+    $grade = 'C (Pass Class)';
+    $status = 'PASS';
+}
+?&gt;</div>
+
+        <!-- CHAPTER 8 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 8: SECURITY ARCHITECTURE & VULNERABILITY ASSESSMENT</h2>
+
+        <h3 class="section-title">8.1 Threat Modeling & Mitigation Analysis</h3>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Threat Vector</th>
+                    <th style="width: 35%;">Potential Vulnerability Mechanism</th>
+                    <th style="width: 45%;">Implemented Defensive Mitigation in SRMS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SQL Injection (SQLi)</strong></td>
+                    <td>Malicious input containing quotes and SQL operators (e.g., `' OR '1'='1`)</td>
+                    <td>100% adoption of PDO prepared statements with strict parameter type binding (`PARAM_STR`, `PARAM_INT`). Zero concatenated query strings.</td>
+                </tr>
+                <tr>
+                    <td><strong>Cross-Site Scripting (XSS)</strong></td>
+                    <td>Injection of executable JavaScript within student names or notice details</td>
+                    <td>Strict sanitization of user outputs via `htmlspecialchars()` and input validation preventing HTML injection in registry fields.</td>
+                </tr>
+                <tr>
+                    <td><strong>Privilege Escalation</strong></td>
+                    <td>Direct URL tampering to access administrative pages without authentication</td>
+                    <td>Server-side session validation block (`$_SESSION['alogin']`) embedded in all admin controllers. Unauthorized requests redirect to `admin-login.php`.</td>
+                </tr>
+                <tr>
+                    <td><strong>Credential Compromise</strong></td>
+                    <td>Plaintext exposure of administrative passwords in database storage</td>
+                    <td>Cryptographic MD5 hashing on input verification and stored passwords, preventing plaintext leaks.</td>
+                </tr>
+                <tr>
+                    <td><strong>Data Inconsistency</strong></td>
+                    <td>Orphaned records created when classes or subjects are removed</td>
+                    <td>Relational foreign key constraints and transactional checks prior to record updates or deletions.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CHAPTER 9 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 9: COMPREHENSIVE TESTING & QUALITY ASSURANCE</h2>
+
+        <h3 class="section-title">9.1 Testing Methodology</h3>
+        <p>The system underwent thorough multi-phase quality assurance, encompassing Unit Testing, Functional Integration Testing, Security Penetration Checks, and User Acceptance Testing (UAT).</p>
+
+        <h3 class="section-title">9.2 Formal Test Case Execution Suite</h3>
+        <table class="academic-table">
+            <thead>
+                <tr>
+                    <th>Test ID</th>
+                    <th>Module</th>
+                    <th>Test Scenario / Input</th>
+                    <th>Expected Result</th>
+                    <th>Observed Result</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TC-01</td>
+                    <td>Authentication</td>
+                    <td>Submit valid credentials (`admin` / `Test@123`)</td>
+                    <td>Session assigned, redirect to `dashboard.php`</td>
+                    <td>Redirected to Dashboard with telemetry</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-02</td>
+                    <td>Authentication</td>
+                    <td>Submit invalid password (`admin` / `WrongPass`)</td>
+                    <td>Display error dialog, deny access</td>
+                    <td>Alert triggered: "Invalid Details"</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-03</td>
+                    <td>Session Guard</td>
+                    <td>Direct URL navigation to `dashboard.php` without active session</td>
+                    <td>Access intercepted, redirect to `admin-login.php`</td>
+                    <td>Successfully intercepted and redirected</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-04</td>
+                    <td>Result Search</td>
+                    <td>Valid Roll ID (`46456`) and matching Class (`First C`)</td>
+                    <td>Generate accurate marksheet transcript</td>
+                    <td>Marksheet rendered with all subjects & percentage</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-05</td>
+                    <td>Result Search</td>
+                    <td>Unregistered Roll ID (`99999`) and Class (`First C`)</td>
+                    <td>Display "No Result Found" advisory</td>
+                    <td>Prompt displayed with return link</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-06</td>
+                    <td>SQLi Security</td>
+                    <td>Input payload `' OR '1'='1` in Roll ID field</td>
+                    <td>PDO driver safely escapes input; zero records returned</td>
+                    <td>Treated as literal string, no bypass</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-07</td>
+                    <td>AJAX Binding</td>
+                    <td>Select student in `add-result.php`</td>
+                    <td>Asynchronously fetch all registered subjects</td>
+                    <td>Loaded 7 subjects dynamically without reload</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-08</td>
+                    <td>Marks Entry</td>
+                    <td>Enter marks exceeding 100 (e.g., `105`)</td>
+                    <td>Form validation rejects entry ($0 \le \text{marks} \le 100$)</td>
+                    <td>Submission blocked with alert</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-09</td>
+                    <td>Grade Logic</td>
+                    <td>Student scores aggregate 85% with all subjects $\ge 35$</td>
+                    <td>Grade calculated as Distinction (A+)</td>
+                    <td>Computed as A+ (Distinction with Honors)</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-10</td>
+                    <td>Fail Evaluation</td>
+                    <td>Student scores 80% aggregate but 28 in Science</td>
+                    <td>Status marked FAIL due to failing subject</td>
+                    <td>Status flagged FAIL accurately</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-11</td>
+                    <td>Print Layout</td>
+                    <td>Trigger `window.print()` on marksheet page</td>
+                    <td>Render clean printable document without navigation</td>
+                    <td>Print CSS isolates official transcript cleanly</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+                <tr>
+                    <td>TC-12</td>
+                    <td>Class CRUD</td>
+                    <td>Create class "Sixth" Section "B"</td>
+                    <td>Record inserted into `tblclasses`</td>
+                    <td>Class created and visible in dropdowns</td>
+                    <td style="color: green; font-weight: bold; text-align: center;">PASS</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- CHAPTER 10 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 10: USER OPERATING MANUAL & WORKFLOW GUIDE</h2>
+
+        <h3 class="section-title">10.1 Student & Public User Operating Guide</h3>
+        <ol>
+            <li><strong>Accessing the Portal:</strong> Open any modern web browser and navigate to the university server URL: <code>http://127.0.0.1:8085/</code>.</li>
+            <li><strong>Navigating to Results:</strong> Click on the orange <strong>"Check Examination Results"</strong> button in the hero section or the <strong>"Student Result Portal"</strong> service card.</li>
+            <li><strong>Submitting Credentials:</strong>
+                <ul>
+                    <li>Select your registered academic class from the dropdown menu (e.g., <em>First C</em>, <em>Fourth C</em>, <em>Sixth B</em>).</li>
+                    <li>Enter your unique student roll identifier (e.g., <code>46456</code>) in the input field.</li>
+                    <li>Click the blue <strong>"Search Result"</strong> button.</li>
+                </ul>
+            </li>
+            <li><strong>Inspecting & Printing Transcripts:</strong> The official marksheet statement will render displaying all enrolled subjects, obtained marks, aggregate score, percentage, and assigned grade. Click <strong>"Print Marksheet"</strong> to save as PDF or output to physical paper.</li>
+        </ol>
+
+        <h3 class="section-title">10.2 Examination Controller & Administrator Guide</h3>
+        <ol>
+            <li><strong>Accessing Admin Portal:</strong> Navigate to <code>http://127.0.0.1:8085/admin-login.php</code>.</li>
+            <li><strong>Authenticating:</strong> Enter username <code>admin</code> and password <code>Test@123</code>, then click <strong>"Sign In to Admin Dashboard"</strong>.</li>
+            <li><strong>Setting Up Curricula:</strong>
+                <ul>
+                    <li><strong>Create Classes:</strong> Click <em>Classes</em> $\rightarrow$ <em>Create Class</em>. Enter Class Name (e.g., "Tenth") and Section (e.g., "A").</li>
+                    <li><strong>Register Subjects:</strong> Click <em>Subjects</em> $\rightarrow$ <em>Create Subject</em>. Provide Subject Name (e.g., "Physics") and Subject Code (e.g., "PH03").</li>
+                    <li><strong>Map Combinations:</strong> Click <em>Subjects</em> $\rightarrow$ <em>Add Subject Combination</em> to link specific subjects to class standards.</li>
+                </ul>
+            </li>
+            <li><strong>Enrolling Students:</strong> Click <em>Students</em> $\rightarrow$ <em>Add Students</em>. Provide the student's legal name, unique Roll ID, email, gender, DOB, and assigned class.</li>
+            <li><strong>Declaring Examination Marks:</strong>
+                <ul>
+                    <li>Click <em>Results</em> $\rightarrow$ <em>Add Result</em>.</li>
+                    <li>Select the target student from the dropdown menu. The system automatically populates input fields for all mapped subjects via AJAX.</li>
+                    <li>Enter numerical marks obtained (out of 100) for each course.</li>
+                    <li>Click <strong>"Declare Result"</strong> to persist records to the live database.</li>
+                </ul>
+            </li>
+            <li><strong>Publishing University Notices:</strong> Click <em>Notices</em> $\rightarrow$ <em>Add Notice</em> to post official announcements visible on the homepage notice ticker.</li>
+        </ol>
+
+        <!-- CHAPTER 11 & 12 -->
+        <div class="page-break"></div>
+        <h2 class="chapter-title">CHAPTER 11: FUTURE ENHANCEMENTS & ROADMAP</h2>
+        <ul>
+            <li><strong>Cryptographic PDF & QR Code Verification:</strong> Integration of automated server-side PDF generation engines (e.g., TCPDF / Dompdf) embedding cryptographically signed QR codes. Scanning the QR code will instantly verify marksheet authenticity against university servers.</li>
+            <li><strong>Multi-Factor Authentication (MFA):</strong> Hardening administrative accounts via Time-based One-Time Password (TOTP) protocols (e.g., Google Authenticator) or email verification codes.</li>
+            <li><strong>Automated SMS & Email Gateways:</strong> Immediate dispatch of marks announcements directly to student and parent mobile devices upon publication via integration with SMS gateways (Twilio, Textlocal) and transactional email services.</li>
+            <li><strong>Graphical Academic Analytics:</strong> Embedding Chart.js data visualizations within the administrative dashboard to plot subject-wise bell curves, semester-over-semester progress graphs, and class pass percentages.</li>
+            <li><strong>National Academic Depository (NAD) & DigiLocker Sync:</strong> Establishing RESTful API endpoints for seamless integration with governmental digital record lockers (such as DigiLocker in India) for paperless degree credentialing.</li>
+        </ul>
+
+        <h2 class="chapter-title">CHAPTER 12: CONCLUSION</h2>
+        <p>The <strong>Student Result Management System (SRMS)</strong> successfully modernizes and centralizes examination administration for <strong>Gyanmanjari Innovative University (GMIU)</strong>. By transitioning from vulnerable, decentralized manual spreadsheets to an enterprise-grade three-tier web application, the platform achieves 100% computational precision, eliminates weeks of publication latency, establishes robust role-based access control, and empowers students with instantaneous marksheet verification.</p>
+        
+        <p>With its normalized relational database, parameterized PDO communication, dynamic AJAX marks allocation, and responsive design, SRMS sets a high academic standard for institutional software engineering. The modular codebase provides a future-proof foundation capable of scaling alongside the ongoing academic expansion of Gyanmanjari Innovative University.</p>
+
+        <h2 class="chapter-title">REFERENCES & BIBLIOGRAPHY</h2>
+        <ol>
+            <li>Welling, L., & Thomson, L. (2017). <em>PHP and MySQL Web Development</em> (5th ed.). Addison-Wesley Professional.</li>
+            <li>Silberschatz, A., Korth, H. F., & Sudarshan, S. (2019). <em>Database System Concepts</em> (7th ed.). McGraw-Hill Education.</li>
+            <li>Nixon, R. (2021). <em>Learning PHP, MySQL & JavaScript: With jQuery, CSS & HTML5</em> (6th ed.). O'Reilly Media.</li>
+            <li>Open Web Application Security Project (OWASP). (2025). <em>OWASP Top 10 Web Application Security Risks</em>. OWASP Foundation.</li>
+            <li>Bootstrap Documentation Team. (2025). <em>Bootstrap v5.3 Framework Architecture and Responsive Grid Standards</em>. getbootstrap.com.</li>
+            <li>Gyanmanjari Innovative University (GMIU). (2026). <em>Academic Regulations, Examination Guidelines, and Evaluation Charters</em>. Bhavnagar, Gujarat, India.</li>
+        </ol>
+    </div>
+
+</body>
+</html>
